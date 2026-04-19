@@ -518,91 +518,6 @@ $(document).ready(async function () {
         }
     });
 
-
-    // ── CARD PICKER ANIMATION ──────────────────────────────────
-    function showCardPicker(clips) {
-        return new Promise(function(resolve) {
-            const winnerIdx = Math.floor(Math.random() * 3);
-            const overlay   = document.getElementById('card-picker-overlay');
-            const cursor    = document.getElementById('fake-cursor');
-
-            // Populate 3 cards
-            for (let i = 0; i < 3; i++) {
-                const c = clips[i];
-                const thumb = document.getElementById('pthumb-' + i);
-                const title = document.getElementById('ptitle-' + i);
-                thumb.src = c.thumbnail_url || '';
-                title.textContent = c.title || '';
-                // Reset classes
-                const card = document.getElementById('pcard-' + i);
-                card.classList.remove('visible','hovered','clicked','winner','dismissed');
-            }
-
-            // Reset cursor position (off-screen bottom)
-            cursor.style.transition = 'none';
-            cursor.style.left = '50%';
-            cursor.style.top  = '90%';
-            cursor.classList.remove('visible','clicking');
-
-            // Show overlay
-            overlay.classList.add('show');
-
-            // Stagger cards in
-            setTimeout(() => document.getElementById('pcard-0').classList.add('visible'), 150);
-            setTimeout(() => document.getElementById('pcard-1').classList.add('visible'), 300);
-            setTimeout(() => document.getElementById('pcard-2').classList.add('visible'), 450);
-
-            // Show cursor after 1.4s
-            setTimeout(function() {
-                cursor.classList.add('visible');
-
-                // Re-enable transition then move to winner card
-                setTimeout(function() {
-                    cursor.style.transition = '';
-                    const winnerCard = document.getElementById('pcard-' + winnerIdx);
-                    const rect = winnerCard.getBoundingClientRect();
-                    cursor.style.left = (rect.left + rect.width  * 0.35) + 'px';
-                    cursor.style.top  = (rect.top  + rect.height * 0.35) + 'px';
-
-                    // Hover state when cursor arrives (~850ms)
-                    setTimeout(function() {
-                        winnerCard.classList.add('hovered');
-
-                        // Click
-                        setTimeout(function() {
-                            cursor.classList.add('clicking');
-                            winnerCard.classList.add('clicked');
-
-                            setTimeout(function() {
-                                cursor.classList.remove('clicking');
-                                winnerCard.classList.remove('clicked');
-                                winnerCard.classList.add('winner');
-
-                                // Dismiss losers
-                                for (let i = 0; i < 3; i++) {
-                                    if (i !== winnerIdx) {
-                                        document.getElementById('pcard-' + i).classList.add('dismissed');
-                                    }
-                                }
-
-                                // Hide cursor
-                                cursor.classList.remove('visible');
-
-                                // Hide overlay → resolve
-                                setTimeout(function() {
-                                    overlay.classList.remove('show');
-                                    setTimeout(function() { resolve(winnerIdx); }, 300);
-                                }, 700);
-
-                            }, 320);  // after click anim
-                        }, 550);    // hover → click
-                    }, 900);        // cursor arrives → hover
-                }, 60);             // small delay before re-enabling transition
-            }, 1400);               // wait for cards to appear
-        });
-    }
-    // ─────────────────────────────────────────────────────────────
-
     function processShoutOutQueue() {
         if (shoutOutQueue.length === 0) {
             isShoutOutPlaying = false;
@@ -646,12 +561,6 @@ $(document).ready(async function () {
         if (noClipState) noClipState.classList.add('hide');
         const noClipAvatar = document.getElementById('no-clip-avatar');
         if (noClipAvatar) { noClipAvatar.src = ''; noClipAvatar.classList.add('hide'); }
-
-        // Reset picker overlay
-        const pickerOverlay = document.getElementById('card-picker-overlay');
-        if (pickerOverlay) pickerOverlay.classList.remove('show');
-        const fakeCursor = document.getElementById('fake-cursor');
-        if (fakeCursor) fakeCursor.classList.remove('visible','clicking');
 
         isShoutOutPlaying = false;
         console.log('Shoutout finished. Processing next in queue.');
@@ -763,13 +672,7 @@ $(document).ready(async function () {
                     // If clips exist
                     if (clipInfo.data[indexClip] && clipInfo.data[indexClip].clip_url) {
 
-                        // ── CARD PICKER (only if 3+ clips, not a replay/watch) ──
-                        if (clipInfo.data.length >= 3 && !replayClip && !watchClip) {
-                            const pickerWinner = await showCardPicker(clipInfo.data);
-                            indexClip = pickerWinner;
-                        }
-
-                        console.log('Playing clip index ' + indexClip + ': ' + clipInfo.data[indexClip].clip_url);
+                        console.log('Clips exist! URL: ' + clipInfo.data[indexClip].clip_url);
 
                         const clip_url = clipInfo.data[indexClip].clip_url;
                         let clip_poster = clipInfo.data[indexClip].thumbnail_url;

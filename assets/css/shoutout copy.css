@@ -55,21 +55,20 @@ html, body {
 
 /* ── SHOUTOUT CARD ── */
 #shoutout-card {
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
     width: 640px;
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.9);
-    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateX(80px) scale(0.94);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: none;
-    z-index: 50;
 }
 
 #shoutout-card.show {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateX(0) scale(1);
 }
 
 /* ── TOP BAR ── */
@@ -398,195 +397,4 @@ html, body {
 
 @keyframes slide {
     100% { left: 0; }
-}
-
-/* ══════════════════════════════════
-   CARD PICKER OVERLAY
-══════════════════════════════════ */
-
-#card-picker-overlay {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(11, 11, 15, 0.88);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 100;
-    transition: opacity 0.5s ease;
-}
-
-#card-picker-overlay.show {
-    opacity: 1;
-}
-
-.picker-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 12px;
-    color: var(--purple);
-    text-shadow: 0 0 24px var(--purple);
-    margin-bottom: 40px;
-    opacity: 0;
-    transform: translateY(-16px);
-    transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
-}
-
-#card-picker-overlay.show .picker-label {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#picker-cards {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-}
-
-.picker-card {
-    width: 300px;
-    background: linear-gradient(145deg, #1a1726 0%, #0d0c14 100%);
-    border: 1px solid rgba(145, 70, 255, 0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(50px) scale(0.92);
-    transition:
-        opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-}
-
-.picker-card.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-.picker-card.hovered {
-    border-color: var(--purple);
-    box-shadow:
-        0 0 0 1px rgba(145, 70, 255, 0.4),
-        0 0 30px rgba(145, 70, 255, 0.45),
-        0 0 70px rgba(145, 70, 255, 0.15);
-    transform: translateY(-10px) scale(1.04);
-}
-
-.picker-card.clicked {
-    animation: cardClickPulse 0.28s ease forwards;
-}
-
-@keyframes cardClickPulse {
-    0%   { transform: translateY(-10px) scale(1.04); }
-    45%  { transform: translateY(-6px) scale(0.97); }
-    100% { transform: translateY(-10px) scale(1.04); }
-}
-
-.picker-card.winner {
-    border-color: var(--gold);
-    box-shadow:
-        0 0 0 1px rgba(245, 200, 66, 0.5),
-        0 0 40px rgba(245, 200, 66, 0.4),
-        0 0 80px rgba(145, 70, 255, 0.2);
-}
-
-.picker-card.dismissed {
-    opacity: 0 !important;
-    transform: translateY(40px) scale(0.88) !important;
-    transition:
-        opacity 0.4s ease,
-        transform 0.4s ease !important;
-}
-
-.pcard-thumb {
-    width: 100%;
-    height: 169px;
-    overflow: hidden;
-    background: #050408;
-    position: relative;
-}
-
-.pcard-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.picker-card.hovered .pcard-thumb img {
-    transform: scale(1.05);
-}
-
-.pcard-thumb::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 32px;
-    background: linear-gradient(to bottom, transparent, #0d0c14);
-    pointer-events: none;
-}
-
-.pcard-info {
-    padding: 12px 16px 20px;
-}
-
-.pcard-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 40px;
-    color: rgba(145, 70, 255, 0.25);
-    line-height: 1;
-    margin-bottom: 4px;
-    transition: color 0.25s ease;
-}
-
-.picker-card.hovered .pcard-num { color: rgba(145, 70, 255, 0.6); }
-.picker-card.winner .pcard-num  { color: var(--gold); }
-
-.pcard-title {
-    font-family: 'Sarabun', sans-serif;
-    font-size: 13px;
-    color: rgba(237, 232, 245, 0.5);
-    line-height: 1.45;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* ══════════════════════════════════
-   FAKE CURSOR
-══════════════════════════════════ */
-
-#fake-cursor {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    pointer-events: none;
-    z-index: 200;
-    opacity: 0;
-    filter: drop-shadow(0 2px 8px rgba(145, 70, 255, 0.6));
-    transition:
-        left 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        top 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-        opacity 0.3s ease;
-}
-
-#fake-cursor.visible { opacity: 1; }
-
-#fake-cursor.clicking {
-    animation: cursorClickAnim 0.22s ease forwards;
-}
-
-@keyframes cursorClickAnim {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(0.75); }
-    100% { transform: scale(1); }
 }

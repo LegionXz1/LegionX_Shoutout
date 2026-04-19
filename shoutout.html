@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Twitch Shout-out</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600&family=Sarabun:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     <script src="assets/js/tmi.min.js"></script>
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/shoutout.js?cachebust=iQ8zG6oW1yA6yN7u"></script>
@@ -26,7 +29,99 @@
 
 <body>
 
-<div id="container">
+<!-- Legacy container kept for compatibility (hidden) -->
+<div id="container" style="display:none;"></div>
+
+<!-- New premium shoutout card -->
+<div id="shoutout-card">
+
+    <div class="top-bar">
+        <div class="top-bar-line"></div>
+        <div class="top-bar-label">✦ SHOUTOUT ✦</div>
+        <div class="top-bar-line"></div>
+    </div>
+
+    <div class="card-panel">
+
+        <!-- VIDEO SECTION -->
+        <div class="video-wrap">
+            <video id="clip" autoplay playsinline></video>
+            <img id="no-clip-avatar" class="hide" alt="channel avatar">
+            <div class="video-overlay"></div>
+            <div class="scanlines"></div>
+            <div class="game-badge hide" id="game-badge"></div>
+
+            <div class="no-clip-state hide" id="no-clip-state">
+                <div class="no-clip-icon">📡</div>
+                <div class="no-clip-text">No Clip Available</div>
+            </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div id="progress-bar-container" style="display:none;">
+            <div id="progress-bar"></div>
+        </div>
+
+        <!-- INFO SECTION -->
+        <div class="info-section">
+            <div class="so-row">
+                <div class="avatar-wrap">
+                    <img id="channel-avatar" src="" alt="avatar">
+                    <div class="avatar-ring"></div>
+                </div>
+                <div class="channel-info">
+                    <div class="so-label">Shout Out</div>
+                    <div id="channel-name">ChannelName</div>
+                    <div class="twitch-url" id="twitch-url">twitch.tv/channelname</div>
+                </div>
+                <div class="follow-btn">FOLLOW</div>
+            </div>
+            <div class="info-divider"></div>
+            <span class="clip-label" id="clip-label-text">NOW PLAYING</span>
+            <div id="clip-title"></div>
+            <div id="channel-desc"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Card Picker Overlay -->
+<div id="card-picker-overlay">
+    <div class="picker-label">✦ PICK A CLIP ✦</div>
+    <div id="picker-cards">
+
+        <div class="picker-card" id="pcard-0">
+            <div class="pcard-thumb"><img id="pthumb-0" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">01</div>
+                <div class="pcard-title" id="ptitle-0"></div>
+            </div>
+        </div>
+
+        <div class="picker-card" id="pcard-1">
+            <div class="pcard-thumb"><img id="pthumb-1" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">02</div>
+                <div class="pcard-title" id="ptitle-1"></div>
+            </div>
+        </div>
+
+        <div class="picker-card" id="pcard-2">
+            <div class="pcard-thumb"><img id="pthumb-2" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">03</div>
+                <div class="pcard-title" id="ptitle-2"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Fake cursor for picker animation -->
+<div id="fake-cursor">
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 3L25 15L16 17L12 25L6 3Z" fill="white" stroke="#9146ff" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
 </div>
 
 </body>

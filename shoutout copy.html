@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Twitch Shout-out</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;600&family=Sarabun:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+        rel="stylesheet">
+    <script src="assets/js/tmi.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/shoutout.js?cachebust=iQ8zG6oW1yA6yN7u"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <link rel="stylesheet" href="assets/css/shoutout.css?cachebust=oL7nH1yZ1oH9cI1y">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+</head>
+
+<body>
+
+    <!-- Legacy container kept for compatibility (hidden) -->
+    <div id="container" style="display:none;"></div>
+
+    <!-- New premium shoutout card -->
+    <div id="shoutout-card">
+
+        <div class="top-bar">
+            <div class="top-bar-line"></div>
+            <div class="top-bar-label">✦ SHOUTOUT ✦</div>
+            <div class="top-bar-line"></div>
+        </div>
+
+        <div class="card-panel">
+
+            <!-- VIDEO SECTION -->
+            <div class="video-wrap">
+                <video id="clip" autoplay playsinline></video>
+                <img id="no-clip-avatar" class="hide" alt="channel avatar">
+                <div class="video-overlay"></div>
+                <div class="scanlines"></div>
+                <div class="game-badge hide" id="game-badge"></div>
+
+                <div class="no-clip-state hide" id="no-clip-state">
+                    <div class="no-clip-icon">📡</div>
+                    <div class="no-clip-text">No Clip Available</div>
+                </div>
+            </div>
+
+            <!-- PROGRESS BAR -->
+            <div id="progress-bar-container" style="display:none;">
+                <div id="progress-bar"></div>
+            </div>
+
+            <!-- INFO SECTION -->
+            <div class="info-section">
+                <div class="so-row">
+                    <div class="avatar-wrap">
+                        <img id="channel-avatar" src="" alt="avatar">
+                        <div class="avatar-ring"></div>
+                    </div>
+                    <div class="channel-info">
+                        <div class="so-label">Shout Out</div>
+                        <div id="channel-name">ChannelName</div>
+                        <div class="twitch-url" id="twitch-url">twitch.tv/channelname</div>
+                    </div>
+                    <div class="follow-btn">FOLLOW</div>
+                </div>
+                <div class="info-divider"></div>
+                <span class="clip-label" id="clip-label-text">NOW PLAYING</span>
+                <div id="clip-title"></div>
+                <div id="channel-desc"></div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
