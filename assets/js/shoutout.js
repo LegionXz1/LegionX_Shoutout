@@ -21,7 +21,7 @@ $(document).ready(async function () {
         if (apiServerUrl) {
             serverArr = [apiServerUrl];
         } else {
-            serverArr = ["http://localhost:8081","http://nginx-1"];
+            serverArr = ["http://localhost:8081","http://nginx-1","https://legionxapi-production.up.railway.app"];
         }
 
         // set the api gateway servers 
