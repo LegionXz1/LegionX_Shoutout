@@ -712,3 +712,339 @@ html, body {
     90%  { opacity: 1; }
     100% { opacity: 0; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   🐾 CSS ART CAT — ORANGE TABBY (pure CSS, zero images)
+   Sits in the bottom-right corner of the overlay.
+   Animations: enter · tail wag · breathe · head sway · blink
+═══════════════════════════════════════════════════════════ */
+
+/* ── CONTAINER ── */
+#css-cat {
+    position: fixed;
+    bottom: 0;
+    right: 24px;
+    width: 120px;   /* extra room for tail on the right */
+    height: 165px;
+    pointer-events: none;
+    z-index: 45;
+    filter: drop-shadow(0 8px 24px rgba(160, 70, 0, 0.45));
+    animation: ccat-enter 1.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+@keyframes ccat-enter {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);   opacity: 1; }
+}
+
+/* ── GROUND SHADOW ── */
+.ccat-shadow {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-58%);
+    width: 70px;
+    height: 10px;
+    background: rgba(100, 40, 0, 0.35);
+    border-radius: 50%;
+    animation: ccat-shadow-pulse 3.5s ease-in-out infinite;
+}
+
+@keyframes ccat-shadow-pulse {
+    0%, 100% { transform: translateX(-58%) scaleX(1);    opacity: 0.35; }
+    50%       { transform: translateX(-58%) scaleX(0.92); opacity: 0.25; }
+}
+
+/* ── TAIL ──
+   L-shape using borders — vertical bar going up from body-right,
+   then bends at the top into a fluffy rounded tip.           */
+.ccat-tail {
+    position: absolute;
+    right: 2px;
+    bottom: 18px;
+    width: 18px;
+    height: 72px;
+    border-right: 13px solid #ff8c2a;
+    border-bottom: 13px solid #ff8c2a;
+    border-radius: 0 0 13px 0;
+    transform-origin: bottom right;
+    animation: ccat-tailwag 2.2s ease-in-out infinite;
+}
+
+/* Fluffy tail tip – an amber blob at the top */
+.ccat-tail::before {
+    content: '';
+    position: absolute;
+    top: -26px;
+    right: -14px;
+    width: 32px;
+    height: 32px;
+    background: #ffaa55;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px #ff8c2a;
+}
+
+/* Subtle stripe on tail */
+.ccat-tail::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: -13px;
+    width: 13px;
+    height: 6px;
+    background: rgba(160, 70, 0, 0.5);
+    border-radius: 3px;
+}
+
+@keyframes ccat-tailwag {
+    0%, 100% { transform: skewX(-5deg) rotate(-2deg); }
+    50%       { transform: skewX(10deg) rotate( 4deg); }
+}
+
+/* ── BODY ── */
+.ccat-body {
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    width: 74px;
+    height: 76px;
+    background: #ff8c2a;
+    border-radius: 37px 37px 26px 26px;
+    animation: ccat-breathe 3.5s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+/* Cream belly */
+.ccat-belly {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 56px;
+    background: #ffe5c0;
+    border-radius: 50% 50% 44% 44%;
+}
+
+/* Body tabby stripes */
+.ccat-bstripe {
+    position: absolute;
+    background: rgba(150, 55, 0, 0.42);
+    border-radius: 3px;
+}
+.ccat-bstripe.bs1 { top: 14px; left:  7px; width: 6px; height: 26px; transform: rotate( 12deg); border-radius: 3px; }
+.ccat-bstripe.bs2 { top: 14px; right: 7px; width: 6px; height: 26px; transform: rotate(-12deg); border-radius: 3px; }
+
+/* Paws */
+.ccat-paw {
+    position: absolute;
+    bottom: -10px;
+    width: 26px;
+    height: 16px;
+    background: #ff8c2a;
+    border-radius: 13px 13px 9px 9px;
+    overflow: visible;
+}
+/* Toe beans on paw */
+.ccat-paw::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    background: #ffc08a;
+    border-radius: 0 0 9px 9px;
+}
+/* Tiny toe detail dots */
+.ccat-paw::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 5px;
+    background:
+        radial-gradient(circle 3px at 25% 50%, #ffaa70 100%, transparent 100%),
+        radial-gradient(circle 3px at 75% 50%, #ffaa70 100%, transparent 100%);
+    background-size: 8px 5px;
+    background-repeat: no-repeat;
+}
+.ccat-paw--l { left:  6px; }
+.ccat-paw--r { right: 6px; }
+
+@keyframes ccat-breathe {
+    0%, 100% { transform: scaleY(1); }
+    50%       { transform: scaleY(1.04); }
+}
+
+/* ── HEAD ── */
+.ccat-head {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 72px;
+    height: 70px;
+    background: #ff8c2a;
+    border-radius: 50% 50% 46% 46%;
+    animation: ccat-sway 3.5s ease-in-out infinite;
+    overflow: visible;   /* so ears & whiskers can stick out */
+}
+
+@keyframes ccat-sway {
+    0%, 100% { transform: rotate(-1.8deg); }
+    50%       { transform: rotate( 1.8deg); }
+}
+
+/* ── EARS ── */
+.ccat-ear {
+    position: absolute;
+    top: -20px;
+    overflow: visible;
+}
+.ccat-ear--l { left:  3px; }
+.ccat-ear--r { right: 3px; }
+
+/* Outer ear triangle */
+.ccat-ear::before {
+    content: '';
+    display: block;
+    width: 0; height: 0;
+    border-left:  17px solid transparent;
+    border-right: 17px solid transparent;
+    border-bottom: 30px solid #ff8c2a;
+}
+.ccat-ear--l::before { transform: rotate(-10deg); }
+.ccat-ear--r::before { transform: rotate( 10deg); }
+
+/* Inner pink ear */
+.ccat-ear-in {
+    position: absolute;
+    top: 8px;
+    left: -8px;
+    width: 0; height: 0;
+    border-left:  8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid #ffaa77;
+}
+.ccat-ear--l .ccat-ear-in { transform: rotate(-10deg); }
+.ccat-ear--r .ccat-ear-in { transform: rotate( 10deg); }
+
+/* ── FOREHEAD TABBY STRIPES ── */
+.ccat-fstripe {
+    position: absolute;
+    top: 7px;
+    width: 4px;
+    height: 13px;
+    background: #c45a00;
+    border-radius: 2px;
+    opacity: 0.72;
+}
+.ccat-fstripe.fs1 { left: 22px; transform: rotate( 9deg); }
+.ccat-fstripe.fs2 { left: 34px; }
+.ccat-fstripe.fs3 { left: 46px; transform: rotate(-9deg); }
+
+/* ── EYES ── */
+.ccat-eye {
+    position: absolute;
+    top: 27px;
+    width: 18px;
+    height: 16px;
+    background: #d4a800;        /* warm amber */
+    border-radius: 50%;
+    overflow: visible;
+    animation: ccat-blink 6s ease-in-out infinite;
+}
+.ccat-eye--l { left:  9px; }
+.ccat-eye--r { right: 9px; }
+
+/* Vertical slit pupil */
+.ccat-pupil {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 14px;
+    background: #0f0500;
+    border-radius: 50%;
+}
+
+/* Eye shine */
+.ccat-shine {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+}
+
+/* Double-blink animation */
+@keyframes ccat-blink {
+    0%, 85%, 100% { transform: scaleY(1); }
+    88%           { transform: scaleY(0.07); }
+    90%           { transform: scaleY(1);    }
+    93%           { transform: scaleY(0.07); }
+    95%           { transform: scaleY(1);    }
+}
+
+/* ── BLUSH CHEEKS ── */
+.ccat-cheek {
+    position: absolute;
+    top: 40px;
+    width: 15px;
+    height: 9px;
+    background: rgba(220, 100, 30, 0.3);
+    border-radius: 50%;
+}
+.ccat-cheek--l { left:  4px; }
+.ccat-cheek--r { right: 4px; }
+
+/* ── NOSE ── (upside-down triangle = cat nose) ── */
+.ccat-nose {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left:  6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top:   8px solid #ff5555;
+}
+
+/* ── MOUTH ── */
+.ccat-mouth {
+    position: absolute;
+    top: 52px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 9px;
+    border-left:  2px solid #c45a00;
+    border-right: 2px solid #c45a00;
+    border-bottom: 2px solid #c45a00;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+/* ── WHISKERS ── */
+.ccat-whisker {
+    position: absolute;
+    height: 1.5px;
+    background: rgba(255, 248, 225, 0.95);
+    border-radius: 1px;
+}
+
+/* Left side whiskers — fan outward to the left */
+.ccat-wl1 { top: 43px; right: 38px; width: 28px; transform-origin: right center; transform: rotate(-10deg); }
+.ccat-wl2 { top: 48px; right: 38px; width: 26px; transform-origin: right center; transform: rotate(  0deg); }
+.ccat-wl3 { top: 53px; right: 38px; width: 28px; transform-origin: right center; transform: rotate( 10deg); }
+
+/* Right side whiskers — fan outward to the right */
+.ccat-wr1 { top: 43px; left: 38px; width: 28px; transform-origin: left center; transform: rotate( 10deg); }
+.ccat-wr2 { top: 48px; left: 38px; width: 26px; transform-origin: left center; transform: rotate(  0deg); }
+.ccat-wr3 { top: 53px; left: 38px; width: 28px; transform-origin: left center; transform: rotate(-10deg); }
