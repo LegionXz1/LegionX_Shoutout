@@ -390,9 +390,31 @@ html, body {
     box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
-.picker-card.focused {
+.picker-card.hovered {
     transform: translateY(-10px) scale(1.05);
     border-color: var(--fc-gold);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.picker-card.clicked {
+    animation: chickenCardClick 0.28s ease forwards;
+}
+
+@keyframes chickenCardClick {
+    0%   { transform: translateY(-10px) scale(1.05); }
+    45%  { transform: translateY(-6px) scale(0.98); }
+    100% { transform: translateY(-10px) scale(1.05); }
+}
+
+.picker-card.winner {
+    border-color: var(--fc-orange);
+    box-shadow: 0 0 30px var(--fc-gold);
+}
+
+.picker-card.dismissed {
+    opacity: 0 !important;
+    transform: translateY(40px) scale(0.88) !important;
+    transition: opacity 0.4s ease, transform 0.4s ease !important;
 }
 
 .pcard-thumb {

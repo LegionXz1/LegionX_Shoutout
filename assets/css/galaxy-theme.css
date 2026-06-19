@@ -567,10 +567,31 @@ html, body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.picker-card.focused {
+.picker-card.hovered {
     transform: translateY(-15px) scale(1.05);
     border-color: var(--gx-cyan);
     box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+}
+
+.picker-card.clicked {
+    animation: galaxyCardClick 0.28s ease forwards;
+}
+
+@keyframes galaxyCardClick {
+    0%   { transform: translateY(-15px) scale(1.05); }
+    45%  { transform: translateY(-10px) scale(0.98); }
+    100% { transform: translateY(-15px) scale(1.05); }
+}
+
+.picker-card.winner {
+    border-color: var(--gx-magenta);
+    box-shadow: 0 0 40px var(--gx-magenta);
+}
+
+.picker-card.dismissed {
+    opacity: 0 !important;
+    transform: translateY(40px) scale(0.88) !important;
+    transition: opacity 0.4s ease, transform 0.4s ease !important;
 }
 
 .pcard-thumb {
