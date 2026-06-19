@@ -105,9 +105,9 @@
 
     function spawnParticles() {
         spawnTimer = setInterval(() => {
+            if (!isShoutoutActive) return; // idle = no particles
             if (particles.length < CFG.pawCount) {
                 particles.push(createPawParticle());
-                // Occasionally spawn 2
                 if (Math.random() < 0.25) {
                     particles.push(createPawParticle());
                 }
@@ -260,30 +260,7 @@
         animFrame = requestAnimationFrame(tick);
     }
 
-    /* ─── SHOUTOUT CARD ENTRANCE ENHANCEMENT ─────────── */
-    // When the shoutout card shows, emit a burst of particles from it
-    const observer = new MutationObserver((mutations) => {
-        for (const m of mutations) {
-            if (m.type === 'attributes' && m.attributeName === 'class') {
-                const el = m.target;
-                if (el.classList.contains('show')) {
-                    burstParticles(
-                        window.innerWidth  / 2,
-                        window.innerHeight / 2 - 80,
-                        20
-                    );
-                }
-            }
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const card = document.getElementById('shoutout-card');
-        if (card) {
-            observer.observe(card, { attributes: true });
-        }
-    });
-
+    /* ─── BURST PARTICLES ───────────────────────────── */
     function burstParticles(cx, cy, count) {
         for (let i = 0; i < count; i++) {
             const p = createPawParticle();
@@ -299,40 +276,32 @@
         }
     }
 
-    /* ─── PURR SOUND on card show (Web Audio API) ───── */
-    // Generates a soft purr-like rumble using oscillators
+    /* ─── PURR SOUND (Web Audio API) ────────────────── */
     let audioCtx = null;
 
     function playPurrSound() {
         try {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
             const now = audioCtx.currentTime;
             const duration = 1.8;
 
-            // Low frequency purr
             for (let i = 0; i < 3; i++) {
-                const osc = audioCtx.createOscillator();
+                const osc  = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-
                 osc.type = 'sine';
                 osc.frequency.setValueAtTime(28 + i * 4, now);
                 osc.frequency.exponentialRampToValueAtTime(22 + i * 3, now + duration);
-
                 gain.gain.setValueAtTime(0, now);
                 gain.gain.linearRampToValueAtTime(0.06, now + 0.1);
                 gain.gain.setValueAtTime(0.06, now + duration - 0.2);
                 gain.gain.linearRampToValueAtTime(0, now + duration);
-
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-
                 osc.start(now);
                 osc.stop(now + duration);
             }
 
-            // High harmonic (cat-like)
-            const osc2 = audioCtx.createOscillator();
+            const osc2  = audioCtx.createOscillator();
             const gain2 = audioCtx.createGain();
             osc2.type = 'triangle';
             osc2.frequency.setValueAtTime(440, now);
@@ -344,25 +313,50 @@
             gain2.connect(audioCtx.destination);
             osc2.start(now);
             osc2.stop(now + 0.35);
-
-        } catch (e) {
-            // Audio not supported – silent fail
-        }
+        } catch (e) { /* silent fail */ }
     }
 
-    // Hook into shoutout card mutation to play purr
+    /* ─── SHOUTOUT STATE CONTROLLER ───────────────────────────
+       Single observer that shows/hides ALL cat decorations when
+       the shoutout card becomes active or returns to idle.
+    ────────────────────────────────────────────────────────── */
+
+    let isShoutoutActive = false;
+
+    function showCatDecorations() {
+        isShoutoutActive = true;
+        const csscat  = document.getElementById('css-cat');
+        const walker  = document.getElementById('cat-walker');
+        if (csscat) csscat.classList.add('cat-active');
+        if (walker) walker.classList.add('cat-active');
+    }
+
+    function hideCatDecorations() {
+        isShoutoutActive = false;
+        const csscat  = document.getElementById('css-cat');
+        const walker  = document.getElementById('cat-walker');
+        if (csscat) csscat.classList.remove('cat-active');
+        if (walker) walker.classList.remove('cat-active');
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const card = document.getElementById('shoutout-card');
         if (!card) return;
 
-        const purObs = new MutationObserver((muts) => {
-            for (const m of muts) {
-                if (m.type === 'attributes' && m.target.classList.contains('show')) {
-                    playPurrSound();
-                }
+        const stateObs = new MutationObserver(() => {
+            const isNowActive = card.classList.contains('show');
+
+            if (isNowActive && !isShoutoutActive) {
+                showCatDecorations();
+                // Burst of particles from the centre of the card
+                burstParticles(window.innerWidth / 2, window.innerHeight / 2 - 80, 20);
+                playPurrSound();
+            } else if (!isNowActive && isShoutoutActive) {
+                hideCatDecorations();
             }
         });
-        purObs.observe(card, { attributes: true });
+
+        stateObs.observe(card, { attributes: true, attributeFilter: ['class'] });
     });
 
 })();
