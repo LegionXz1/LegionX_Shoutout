@@ -350,6 +350,7 @@ html, body {
 .avatar-ring {
     position: absolute;
     inset: -6px;
+    z-index: -1;
     border-radius: 50%;
     border: 2px solid transparent;
     background:
