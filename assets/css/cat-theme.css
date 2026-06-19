@@ -334,6 +334,7 @@ html, body {
 .avatar-wrap {
     position: relative;
     flex-shrink: 0;
+    z-index: 1;
 }
 
 #channel-avatar {
