@@ -12,8 +12,8 @@
         pawCount:      18,    // max paw particles alive at once
         spawnInterval: 900,   // ms between new particles
         catEmojis:     ['🐱', '😺', '😸', '🐾', '🐈', '🐈‍⬛'],
-        heartColors:   ['#ff6eb4', '#ff9ed3', '#ffcf60', '#e040a0', '#b048d8'],
-        pinkGlow:      'rgba(255, 110, 180, 0.7)',
+        heartColors:   ['#ff8c2a', '#ffaa55', '#ffcc00', '#e05a00', '#c47a00'],
+        pinkGlow:      'rgba(255, 140, 42, 0.7)',
     };
 
     /* ─── STATE ─────────────────────────────────────── */

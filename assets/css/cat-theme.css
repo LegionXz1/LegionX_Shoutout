@@ -1,21 +1,21 @@
 /* ═══════════════════════════════════════════════════
    🐾 CAT THEME - LegionX Shoutout
-   Kawaii cat aesthetic with pinks, magentas & creams
+   Orange cat aesthetic with ambers, oranges & creams
 ═══════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;600;700&display=swap');
 
 /* ── CAT VARIABLES ── */
 :root {
-    --cat-pink:    #ff6eb4;
-    --cat-magenta: #e040a0;
-    --cat-purple:  #b048d8;
-    --cat-cream:   #fff0f7;
-    --cat-dark:    #1a0a1a;
-    --cat-card:    #210c28;
-    --cat-muted:   rgba(255, 220, 240, 0.55);
-    --cat-glow:    rgba(255, 110, 180, 0.55);
-    --cat-gold:    #ffcf60;
+    --cat-pink:    #ff8c2a;
+    --cat-magenta: #e05a00;
+    --cat-purple:  #c47a00;
+    --cat-cream:   #fff4e0;
+    --cat-dark:    #1a0d00;
+    --cat-card:    #221200;
+    --cat-muted:   rgba(255, 230, 180, 0.55);
+    --cat-glow:    rgba(255, 140, 42, 0.55);
+    --cat-gold:    #ffcc00;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,7 +78,7 @@ html, body {
     height: 0;
     border-left:  36px solid transparent;
     border-right: 36px solid transparent;
-    border-bottom: 42px solid var(--cat-pink);
+    border-bottom: 42px solid #ff8c2a;
     filter: drop-shadow(0 -4px 12px var(--cat-glow));
     position: relative;
 }
@@ -92,7 +92,7 @@ html, body {
     height: 0;
     border-left:  18px solid transparent;
     border-right: 18px solid transparent;
-    border-bottom: 22px solid #ff9ed3;
+    border-bottom: 22px solid #ffb86a;
 }
 
 /* ════════════════════════════════
@@ -144,14 +144,14 @@ html, body {
 
 /* ── CARD PANEL ── */
 .card-panel {
-    background: linear-gradient(145deg, #270d30 0%, #1a0a20 55%, #210a29 100%);
-    border: 1.5px solid rgba(255, 110, 180, 0.35);
+    background: linear-gradient(145deg, #2a1400 0%, #1a0d00 55%, #221200 100%);
+    border: 1.5px solid rgba(255, 140, 42, 0.35);
     border-radius: 16px;
     overflow: hidden;
     position: relative;
     box-shadow:
-        0 0 0 1px rgba(255, 110, 180, 0.1),
-        0 0 40px rgba(255, 110, 180, 0.12),
+        0 0 0 1px rgba(255, 140, 42, 0.1),
+        0 0 40px rgba(255, 140, 42, 0.12),
         0 24px 70px rgba(0, 0, 0, 0.75);
 }
 
@@ -186,7 +186,7 @@ html, body {
     width: 100%;
     height: 360px;
     overflow: hidden;
-    background: #0d020d;
+    background: #0d0500;
 }
 
 #clip {
@@ -208,12 +208,12 @@ html, body {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 70px;
-    background: linear-gradient(to bottom, transparent, #1a0a20);
+    background: linear-gradient(to bottom, transparent, #1a0d00);
     pointer-events: none;
     z-index: 5;
 }
 
-/* Cat scanlines – subtle pink tinted */
+/* Cat scanlines – subtle orange tinted */
 .scanlines {
     position: absolute;
     inset: 0;
@@ -221,8 +221,8 @@ html, body {
         0deg,
         transparent,
         transparent 3px,
-        rgba(255,110,180,0.015) 3px,
-        rgba(255,110,180,0.015) 6px
+        rgba(255,140,42,0.015) 3px,
+        rgba(255,140,42,0.015) 6px
     );
     pointer-events: none;
     z-index: 3;
@@ -232,8 +232,8 @@ html, body {
 .game-badge {
     position: absolute;
     top: 10px; right: 10px;
-    background: rgba(26, 10, 30, 0.9);
-    border: 1px solid rgba(255, 110, 180, 0.5);
+    background: rgba(26, 13, 0, 0.9);
+    border: 1px solid rgba(255, 140, 42, 0.5);
     border-radius: 20px;
     padding: 4px 12px;
     font-size: 10px;
@@ -248,7 +248,7 @@ html, body {
     text-overflow: ellipsis;
     pointer-events: none;
     z-index: 6;
-    box-shadow: 0 0 10px rgba(255, 110, 180, 0.3);
+    box-shadow: 0 0 10px rgba(255, 140, 42, 0.3);
 }
 
 .game-badge::before {
@@ -281,7 +281,7 @@ html, body {
 .no-clip-text {
     font-size: 10px;
     letter-spacing: 3px;
-    color: rgba(255, 110, 180, 0.4);
+    color: rgba(255, 140, 42, 0.4);
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
@@ -329,7 +329,7 @@ html, body {
     border-radius: 50%;
     object-fit: cover;
     border: 2.5px solid var(--cat-pink);
-    box-shadow: 0 0 22px var(--cat-glow), 0 0 6px rgba(255,110,180,0.4);
+    box-shadow: 0 0 22px var(--cat-glow), 0 0 6px rgba(255,140,42,0.4);
     display: block;
 }
 
@@ -340,7 +340,7 @@ html, body {
     border-radius: 50%;
     border: 2px solid transparent;
     background:
-        linear-gradient(#1a0a20, #1a0a20) padding-box,
+        linear-gradient(#1a0d00, #1a0d00) padding-box,
         linear-gradient(var(--cat-pink), var(--cat-purple), var(--cat-magenta), var(--cat-pink)) border-box;
     opacity: 0;
     animation: ringReveal 0.5s ease 0.8s forwards, ringRotate 4s linear 1.3s infinite;
@@ -365,7 +365,7 @@ html, body {
     width: 0; height: 0;
     border-left:  11px solid transparent;
     border-right: 11px solid transparent;
-    border-bottom: 16px solid var(--cat-pink);
+    border-bottom: 16px solid #ff8c2a;
     z-index: 10;
     filter: drop-shadow(0 -2px 4px var(--cat-glow));
 }
@@ -427,21 +427,21 @@ html, body {
     font-size: 14px;
     letter-spacing: 1px;
     color: white;
-    box-shadow: 0 4px 18px rgba(255, 110, 180, 0.5), 0 0 8px rgba(255,110,180,0.3);
+    box-shadow: 0 4px 18px rgba(255, 140, 42, 0.5), 0 0 8px rgba(255,140,42,0.3);
     align-self: flex-start;
     margin-top: 6px;
     animation: followPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes followPulse {
-    0%, 100% { box-shadow: 0 4px 18px rgba(255,110,180,0.5), 0 0 8px rgba(255,110,180,0.3); }
-    50%       { box-shadow: 0 4px 28px rgba(255,110,180,0.8), 0 0 20px rgba(255,110,180,0.5); }
+    0%, 100% { box-shadow: 0 4px 18px rgba(255,140,42,0.5), 0 0 8px rgba(255,140,42,0.3); }
+    50%       { box-shadow: 0 4px 28px rgba(255,140,42,0.8), 0 0 20px rgba(255,140,42,0.5); }
 }
 
 /* ── DIVIDER ── */
 .info-divider {
     height: 1px;
-    background: linear-gradient(90deg, rgba(255, 110, 180, 0.4), transparent);
+    background: linear-gradient(90deg, rgba(255, 140, 42, 0.4), transparent);
     margin-bottom: 12px;
     position: relative;
 }
@@ -459,7 +459,7 @@ html, body {
     font-style: normal;
     font-size: 9px;
     letter-spacing: 3px;
-    color: rgba(255, 110, 180, 0.7);
+    color: rgba(255, 140, 42, 0.7);
     text-transform: uppercase;
     font-family: 'Quicksand', sans-serif;
     font-weight: 700;
@@ -502,7 +502,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(20, 5, 22, 0.92);
+    background: rgba(20, 8, 0, 0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     opacity: 0;
@@ -518,7 +518,7 @@ html, body {
     font-size: 26px;
     letter-spacing: 8px;
     color: var(--cat-pink);
-    text-shadow: 0 0 28px var(--cat-glow), 0 0 60px rgba(255,110,180,0.3);
+    text-shadow: 0 0 28px var(--cat-glow), 0 0 60px rgba(255,140,42,0.3);
     margin-bottom: 40px;
     opacity: 0;
     transform: translateY(-16px);
@@ -538,8 +538,8 @@ html, body {
 
 .picker-card {
     width: 290px;
-    background: linear-gradient(145deg, #2b0e34 0%, #1a0a20 100%);
-    border: 1.5px solid rgba(255, 110, 180, 0.2);
+    background: linear-gradient(145deg, #2e1500 0%, #1a0d00 100%);
+    border: 1.5px solid rgba(255, 140, 42, 0.2);
     border-radius: 14px;
     overflow: hidden;
     opacity: 0;
@@ -560,9 +560,9 @@ html, body {
 .picker-card.hovered {
     border-color: var(--cat-pink);
     box-shadow:
-        0 0 0 1px rgba(255, 110, 180, 0.5),
-        0 0 32px rgba(255, 110, 180, 0.5),
-        0 0 80px rgba(255, 110, 180, 0.2);
+        0 0 0 1px rgba(255, 140, 42, 0.5),
+        0 0 32px rgba(255, 140, 42, 0.5),
+        0 0 80px rgba(255, 140, 42, 0.2);
     transform: translateY(-10px) scale(1.04);
 }
 
@@ -579,9 +579,9 @@ html, body {
 .picker-card.winner {
     border-color: var(--cat-gold);
     box-shadow:
-        0 0 0 1px rgba(255, 207, 96, 0.6),
-        0 0 40px rgba(255, 207, 96, 0.4),
-        0 0 80px rgba(255, 110, 180, 0.25);
+        0 0 0 1px rgba(255, 204, 0, 0.6),
+        0 0 40px rgba(255, 204, 0, 0.4),
+        0 0 80px rgba(255, 140, 42, 0.25);
 }
 
 .picker-card.dismissed {
@@ -613,7 +613,7 @@ html, body {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 36px;
-    background: linear-gradient(to bottom, transparent, #1a0a20);
+    background: linear-gradient(to bottom, transparent, #1a0d00);
     pointer-events: none;
 }
 
@@ -624,19 +624,19 @@ html, body {
 .pcard-num {
     font-family: 'Fredoka One', cursive;
     font-size: 38px;
-    color: rgba(255, 110, 180, 0.2);
+    color: rgba(255, 140, 42, 0.2);
     line-height: 1;
     margin-bottom: 4px;
     transition: color 0.25s ease;
 }
 
-.picker-card.hovered .pcard-num { color: rgba(255, 110, 180, 0.7); }
+.picker-card.hovered .pcard-num { color: rgba(255, 140, 42, 0.7); }
 .picker-card.winner .pcard-num  { color: var(--cat-gold); }
 
 .pcard-title {
     font-family: 'Nunito', sans-serif;
     font-size: 13px;
-    color: rgba(255, 220, 240, 0.55);
+    color: rgba(255, 230, 180, 0.55);
     line-height: 1.45;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -653,7 +653,7 @@ html, body {
     pointer-events: none;
     z-index: 200;
     opacity: 0;
-    filter: drop-shadow(0 2px 8px rgba(255, 110, 180, 0.7));
+    filter: drop-shadow(0 2px 8px rgba(255, 140, 42, 0.7));
     transition:
         left 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
         top  0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -681,7 +681,7 @@ html, body {
     pointer-events: none;
     z-index: 999;
     font-size: 38px;
-    filter: drop-shadow(0 0 8px rgba(255,110,180,0.6));
+    filter: drop-shadow(0 0 8px rgba(255,140,42,0.6));
     animation: catWalk 18s linear infinite;
     opacity: 0.85;
 }
