@@ -431,8 +431,23 @@ html, body {
     z-index: 10000;
     opacity: 0;
     filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+    transition:
+        left 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        top 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.3s ease;
 }
-#fake-cursor.show { opacity: 1; }
+
+#fake-cursor.visible { opacity: 1; }
+
+#fake-cursor.clicking {
+    animation: cursorClickAnim 0.22s ease forwards;
+}
+
+@keyframes cursorClickAnim {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0.75); }
+    100% { transform: scale(1); }
+}
 
 /* ═══════════════════════════════════════════════════
    🍗 PURE CSS FRIED CHICKEN BUCKET ART
