@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>🍗 Fried Chicken Shoutout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+    <script src="assets/js/tmi.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/shoutout.js?cachebust=iQ8zG6oW1yA6yN7u"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/chicken-animations.js"></script>
+    <link rel="stylesheet" href="assets/css/chicken-theme.css">
+</head>
+
+<body>
+
+<!-- New fried-chicken-themed shoutout card -->
+<div id="shoutout-card">
+
+    <!-- Pure CSS Chicken Bucket Art -->
+    <div class="chicken-bucket-container">
+        <!-- Drumsticks sticking out -->
+        <div class="drumstick left">
+            <div class="meat">
+                <div class="crispy-texture"></div>
+            </div>
+            <div class="bone"></div>
+        </div>
+        <div class="drumstick right">
+            <div class="meat">
+                <div class="crispy-texture"></div>
+            </div>
+            <div class="bone"></div>
+        </div>
+        <div class="drumstick center">
+            <div class="meat">
+                <div class="crispy-texture"></div>
+            </div>
+            <div class="bone"></div>
+        </div>
+        <!-- The bucket itself -->
+        <div class="bucket">
+            <div class="bucket-stripe stripe-1"></div>
+            <div class="bucket-stripe stripe-2"></div>
+            <div class="bucket-stripe stripe-3"></div>
+            <div class="bucket-rim"></div>
+            <div class="bucket-label">EXTRA<br>CRISPY</div>
+        </div>
+    </div>
+
+    <!-- Sizzling particles container -->
+    <div class="sizzle-container"></div>
+
+    <div class="top-bar">
+        <div class="top-bar-line"></div>
+        <div class="top-bar-label">🍗 FRESH OUT THE FRYER 🍗</div>
+        <div class="top-bar-line"></div>
+    </div>
+
+    <div class="card-panel">
+
+        <!-- VIDEO SECTION -->
+        <div class="video-wrap">
+            <video id="clip" autoplay playsinline></video>
+            <img id="no-clip-avatar" class="hide" alt="channel avatar">
+            <div class="video-overlay"></div>
+            <div class="game-badge hide" id="game-badge"></div>
+
+            <div class="no-clip-state hide" id="no-clip-state">
+                <div class="no-clip-icon">🍗</div>
+                <div class="no-clip-text">No Clip Available</div>
+            </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div id="progress-bar-container" style="display:none;">
+            <div id="progress-bar"></div>
+        </div>
+
+        <!-- INFO SECTION -->
+        <div class="info-section">
+            <div class="so-row">
+                <div class="avatar-wrap">
+                    <img id="channel-avatar" src="" alt="avatar">
+                    <div class="avatar-ring"></div>
+                </div>
+                <div class="channel-info">
+                    <div class="so-label">Shout Out</div>
+                    <div id="channel-name">ChannelName</div>
+                    <div class="twitch-url" id="twitch-url">twitch.tv/channelname</div>
+                </div>
+                <div class="follow-btn">FOLLOW 🍗</div>
+            </div>
+            <div class="info-divider"></div>
+            <span class="clip-label" id="clip-label-text">NOW SERVING</span>
+            <div id="clip-title"></div>
+            <div id="channel-desc"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Card Picker Overlay -->
+<div id="card-picker-overlay">
+    <div class="picker-label">🍗 PICK A CRISPY CLIP 🍗</div>
+    <div id="picker-cards">
+
+        <div class="picker-card" id="pcard-0">
+            <div class="pcard-thumb"><img id="pthumb-0" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">01</div>
+                <div class="pcard-title" id="ptitle-0"></div>
+            </div>
+        </div>
+
+        <div class="picker-card" id="pcard-1">
+            <div class="pcard-thumb"><img id="pthumb-1" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">02</div>
+                <div class="pcard-title" id="ptitle-1"></div>
+            </div>
+        </div>
+
+        <div class="picker-card" id="pcard-2">
+            <div class="pcard-thumb"><img id="pthumb-2" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">03</div>
+                <div class="pcard-title" id="ptitle-2"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Fake cursor for picker animation (chicken leg cursor) -->
+<div id="fake-cursor">
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M80 20C75 15 65 15 60 20L40 40C35 45 35 55 40 60L45 65L30 80C28 82 25 82 23 80L20 77C18 75 18 72 20 70L35 55L40 60C45 65 55 65 60 60L80 40C85 35 85 25 80 20Z" fill="#FFA500" stroke="#8B4513" stroke-width="4"/>
+        <path d="M23 80L15 88C13 90 10 90 8 88C6 86 6 83 8 81L16 73C18 71 21 71 23 73L30 80Z" fill="#F5DEB3" stroke="#8B4513" stroke-width="4"/>
+        <circle cx="12" cy="88" r="5" fill="#F5DEB3" stroke="#8B4513" stroke-width="2"/>
+        <circle cx="8" cy="84" r="5" fill="#F5DEB3" stroke="#8B4513" stroke-width="2"/>
+    </svg>
+</div>
+
+</body>
+</html>

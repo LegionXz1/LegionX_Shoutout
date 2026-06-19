@@ -313,6 +313,7 @@ Clipped by {creator_name} {created_at}"></textarea>
                 <option value="9">Mega Retro</option>
                 <option value="cat">🐾 Cat Theme</option>
                 <option value="galaxy">🌌 Cosmic Galaxy</option>
+                <option value="chicken">🍗 Fried Chicken</option>
             </select>
             <small class="text-muted"><a href="https://github.com/teklynk/twitch_shoutout/discussions/31" target="_blank">Screenshots of themes</a></small>
         </div>
@@ -626,8 +627,9 @@ Clipped by {creator_name} {created_at}"></textarea>
                 let htmlFile = "shoutout.html";
                 if (themeOption === "cat") htmlFile = "shoutout-cat.html";
                 if (themeOption === "galaxy") htmlFile = "shoutout-galaxy.html";
+                if (themeOption === "chicken") htmlFile = "shoutout-chicken.html";
                 
-                let themeParam = (themeOption === "cat" || themeOption === "galaxy") ? "0" : themeOption;
+                let themeParam = (themeOption === "cat" || themeOption === "galaxy" || themeOption === "chicken") ? "0" : themeOption;
 
                 let fullUrl = srcURL + htmlFile + "?channel=" + mainAccount.toLowerCase() + "&showClip=" + showClip + "&showMsg=" + encodeURIComponent(showMsg) + "&showText=" + showText + "&showImage=" + showImage + "&raided=" + raided + "&raidCount=" + raidCount + "&delay=" + delay + "&modsOnly=" + modsOnly + "&timeOut=" + timeOut + "&command=" + command + "&customMsg=" + encodeURIComponent(customMsg) + "&customTitle=" + encodeURIComponent(customTitle) + "&showDetails=" + showDetails + "&detailsText=" + encodeURIComponent(detailsText) + "&dateRange=" + dateRange + "&themeOption=" + themeParam + "&preferFeatured=" + preferFeatured + "&progressBar=" + progressBar + "&profileBadge=" + profileBadge + "&videoSize=" + videoSize + "&ref=" + btoa(ref);
                 fullUrl = fullUrl.replace("index.html" + htmlFile, htmlFile);
