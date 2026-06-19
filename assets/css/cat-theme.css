@@ -20,6 +20,19 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* ── REQUIRED UTILITY — used by shoutout.js ── */
+.hide {
+    display: none !important;
+}
+
+/* no-clip-avatar: full-bleed avatar image shown when no clip is available */
+#no-clip-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 /* ── BASE ── */
 html, body {
     overflow: hidden;
