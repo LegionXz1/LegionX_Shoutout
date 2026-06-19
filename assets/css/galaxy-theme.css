@@ -1,0 +1,621 @@
+/* ═══════════════════════════════════════════════════
+   🌌 COSMIC GALAXY THEME - LegionX Shoutout
+   Deep space aesthetic with cyan, magenta & violet
+═══════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+/* ── COSMIC VARIABLES ── */
+:root {
+    --gx-cyan:    #00ffff;
+    --gx-magenta: #ff00ff;
+    --gx-violet:  #8a2be2;
+    --gx-dark:    #050210;
+    --gx-card:    #0b0422;
+    --gx-muted:   rgba(0, 255, 255, 0.55);
+    --gx-glow:    rgba(255, 0, 255, 0.55);
+    --gx-white:   #e0e0ff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── REQUIRED UTILITY — used by shoutout.js ── */
+.hide {
+    display: none !important;
+}
+
+/* no-clip-avatar: full-bleed avatar image shown when no clip is available */
+#no-clip-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── BASE ── */
+html, body {
+    overflow: hidden;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ── SHOUTOUT CARD CONTAINER ── */
+#shoutout-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 680px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+    transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    z-index: 50;
+    filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.4));
+}
+
+#shoutout-card.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+.top-bar-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gx-cyan), transparent);
+    box-shadow: 0 0 8px var(--gx-cyan);
+}
+
+.top-bar-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: var(--gx-cyan);
+    text-shadow: 0 0 10px var(--gx-cyan), 0 0 20px var(--gx-violet);
+}
+
+/* ── CARD PANEL ── */
+.card-panel {
+    background: var(--gx-card);
+    border: 2px solid var(--gx-violet);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 0 40px rgba(255, 0, 255, 0.2), 
+                0 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.card-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gx-cyan), var(--gx-magenta), var(--gx-violet), var(--gx-cyan));
+    background-size: 200% auto;
+    z-index: 10;
+    pointer-events: none;
+    animation: gradientShift 3s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* ── VIDEO WRAP ── */
+.video-wrap {
+    position: relative;
+    width: 100%;
+    height: 382px;
+    overflow: hidden;
+    background: #000;
+}
+
+#clip {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border: none;
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gx-card));
+    pointer-events: none;
+    z-index: 5;
+}
+
+.scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.05) 2px,
+        rgba(0, 255, 255, 0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.6;
+}
+
+/* ── GAME BADGE ── */
+.game-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(5, 2, 16, 0.85);
+    border: 1px solid var(--gx-cyan);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gx-cyan);
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    z-index: 6;
+    box-shadow: 0 0 10px rgba(0,255,255,0.3);
+}
+
+/* ── NO CLIP STATE ── */
+.no-clip-state {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, var(--gx-violet) 0%, #000 100%);
+    opacity: 0.8;
+}
+
+.no-clip-icon {
+    font-size: 50px;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px var(--gx-magenta));
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.no-clip-text {
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: var(--gx-white);
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px var(--gx-magenta);
+}
+
+/* ── PROGRESS BAR ── */
+#progress-bar-container {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 10;
+}
+
+#progress-bar {
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gx-violet), var(--gx-magenta), var(--gx-cyan));
+    box-shadow: 0 0 10px var(--gx-cyan);
+    z-index: 10;
+}
+
+/* ── INFO SECTION ── */
+.info-section {
+    padding: 24px 30px;
+    position: relative;
+}
+
+.so-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+/* ── AVATAR ── */
+.avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+#channel-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gx-cyan);
+    box-shadow: 0 0 20px var(--gx-cyan), inset 0 0 10px var(--gx-magenta);
+    display: block;
+}
+
+/* Glowing cosmic ring around avatar */
+.avatar-ring {
+    position: absolute;
+    inset: -8px;
+    z-index: -1;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(var(--gx-card), var(--gx-card)) padding-box,
+        linear-gradient(45deg, var(--gx-cyan), var(--gx-magenta), var(--gx-violet), var(--gx-cyan)) border-box;
+    opacity: 0;
+    animation: cosmicReveal 0.5s ease 0.8s forwards, cosmicSpin 3s linear 1.3s infinite;
+}
+
+@keyframes cosmicReveal {
+    0%   { opacity: 0; transform: scale(1.4); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cosmicSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* ── CHANNEL INFO ── */
+.channel-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.so-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    color: var(--gx-magenta);
+    text-transform: uppercase;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 2px;
+}
+
+#channel-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gx-white);
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.twitch-url {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gx-muted);
+    font-family: 'Rajdhani', sans-serif;
+    margin-top: 2px;
+}
+
+/* ── FOLLOW BUTTON ── */
+.follow-btn {
+    background: linear-gradient(45deg, var(--gx-violet), var(--gx-magenta));
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
+    animation: cosmicPulseBtn 2s infinite;
+}
+
+@keyframes cosmicPulseBtn {
+    0%   { box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4); }
+    50%  { box-shadow: 0 4px 25px rgba(0, 255, 255, 0.6); }
+    100% { box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4); }
+}
+
+/* ── DIVIDER ── */
+.info-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0,255,255,0.2), transparent);
+    margin: 12px 0 16px;
+}
+
+/* ── CLIP DETAILS ── */
+.clip-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gx-cyan);
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+#clip-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gx-white);
+    margin-bottom: 8px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#channel-desc {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(224, 224, 255, 0.7);
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+/* ── PURE CSS UFO ART ── */
+.ufo-container {
+    position: absolute;
+    top: -50px;
+    right: -60px;
+    width: 140px;
+    height: 120px;
+    z-index: 100;
+    animation: ufoFloat 4s ease-in-out infinite, ufoEnter 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transform: scale(0);
+}
+
+@keyframes ufoEnter {
+    0% { transform: scale(0) translate(100px, -100px) rotate(45deg); }
+    100% { transform: scale(1) translate(0, 0) rotate(-5deg); }
+}
+
+@keyframes ufoFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+}
+
+/* UFO Glass Dome */
+.ufo-glass {
+    position: absolute;
+    top: 10px;
+    left: 35px;
+    width: 70px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.8), rgba(0, 100, 255, 0.4));
+    border-radius: 50px 50px 10px 10px;
+    border: 2px solid var(--gx-cyan);
+    box-shadow: inset 0 10px 20px rgba(255, 255, 255, 0.4), 0 0 15px var(--gx-cyan);
+    z-index: 3;
+    overflow: hidden;
+}
+
+/* Alien inside UFO */
+.alien {
+    position: absolute;
+    bottom: -5px;
+    left: 20px;
+    width: 30px;
+    height: 35px;
+    background: #00ff00;
+    border-radius: 20px 20px 10px 10px;
+    box-shadow: inset -5px -5px 10px rgba(0, 100, 0, 0.5);
+}
+
+.alien-eye {
+    position: absolute;
+    top: 10px;
+    width: 8px;
+    height: 12px;
+    background: #000;
+    border-radius: 50%;
+    transform: rotate(20deg);
+}
+
+.alien-eye.left { left: 4px; transform: rotate(15deg); }
+.alien-eye.right { right: 4px; transform: rotate(-15deg); }
+
+.alien-eye::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+/* UFO Base Plate */
+.ufo-base {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 140px;
+    height: 30px;
+    background: linear-gradient(to bottom, #888, #333);
+    border-radius: 50%;
+    border: 2px solid #555;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8), inset 0 2px 5px rgba(255,255,255,0.5);
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+}
+
+/* UFO Blinking Lights */
+.ufo-light {
+    width: 12px;
+    height: 8px;
+    background: var(--gx-magenta);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--gx-magenta);
+}
+
+.light-1 { animation: blink 1s infinite alternate; }
+.light-2 { animation: blink 1s infinite alternate 0.3s; background: var(--gx-cyan); box-shadow: 0 0 10px var(--gx-cyan); }
+.light-3 { animation: blink 1s infinite alternate 0.6s; background: var(--gx-violet); box-shadow: 0 0 10px var(--gx-violet); }
+
+@keyframes blink {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* UFO Tractor Beam */
+.ufo-beam {
+    position: absolute;
+    top: 65px;
+    left: 20px;
+    width: 100px;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(0, 255, 255, 0.6), transparent);
+    clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+    z-index: 1;
+    opacity: 0.5;
+    animation: beamPulse 2s infinite alternate;
+}
+
+@keyframes beamPulse {
+    0% { opacity: 0.3; height: 150px; }
+    100% { opacity: 0.7; height: 250px; }
+}
+
+/* ── CARD PICKER OVERLAY ── */
+#card-picker-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(5, 2, 16, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    backdrop-filter: blur(10px);
+}
+
+#card-picker-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.picker-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gx-cyan);
+    margin-bottom: 40px;
+    letter-spacing: 10px;
+    text-shadow: 0 0 20px var(--gx-magenta);
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText {
+    from { text-shadow: 0 0 10px var(--gx-magenta); }
+    to { text-shadow: 0 0 30px var(--gx-cyan), 0 0 10px var(--gx-magenta); }
+}
+
+#picker-cards {
+    display: flex;
+    gap: 30px;
+}
+
+.picker-card {
+    width: 260px;
+    background: var(--gx-card);
+    border: 2px solid rgba(138, 43, 226, 0.5);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.picker-card.focused {
+    transform: translateY(-15px) scale(1.05);
+    border-color: var(--gx-cyan);
+    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+}
+
+.pcard-thumb {
+    width: 100%;
+    height: 146px;
+    background: #000;
+}
+
+.pcard-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pcard-info {
+    padding: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.pcard-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gx-magenta);
+}
+
+.pcard-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gx-white);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#fake-cursor {
+    position: fixed;
+    top: -50px; left: -50px;
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#fake-cursor.show { opacity: 1; }

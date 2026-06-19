@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>🌌 Cosmic Galaxy Shoutout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="assets/js/tmi.min.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/shoutout.js?cachebust=iQ8zG6oW1yA6yN7u"></script>
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/galaxy-animations.js"></script>
+    <link rel="stylesheet" href="assets/css/galaxy-theme.css">
+</head>
+
+<body>
+
+<!-- New galaxy-themed shoutout card -->
+<div id="shoutout-card">
+
+    <!-- Pure CSS UFO Art -->
+    <div class="ufo-container">
+        <div class="ufo-beam"></div>
+        <div class="ufo-glass">
+            <div class="alien">
+                <div class="alien-eye left"></div>
+                <div class="alien-eye right"></div>
+            </div>
+        </div>
+        <div class="ufo-base">
+            <div class="ufo-light light-1"></div>
+            <div class="ufo-light light-2"></div>
+            <div class="ufo-light light-3"></div>
+        </div>
+    </div>
+
+    <!-- Background Stars / Particles (CSS generated or canvas) -->
+    <div class="galaxy-background"></div>
+
+    <div class="top-bar">
+        <div class="top-bar-line"></div>
+        <div class="top-bar-label">🌌 COSMIC SHOUTOUT 🌌</div>
+        <div class="top-bar-line"></div>
+    </div>
+
+    <div class="card-panel">
+
+        <!-- VIDEO SECTION -->
+        <div class="video-wrap">
+            <video id="clip" autoplay playsinline></video>
+            <img id="no-clip-avatar" class="hide" alt="channel avatar">
+            <div class="video-overlay"></div>
+            <div class="scanlines"></div>
+            <div class="game-badge hide" id="game-badge"></div>
+
+            <div class="no-clip-state hide" id="no-clip-state">
+                <div class="no-clip-icon">🚀</div>
+                <div class="no-clip-text">No Clip Available</div>
+            </div>
+        </div>
+
+        <!-- PROGRESS BAR -->
+        <div id="progress-bar-container" style="display:none;">
+            <div id="progress-bar"></div>
+        </div>
+
+        <!-- INFO SECTION -->
+        <div class="info-section">
+            <div class="so-row">
+                <div class="avatar-wrap">
+                    <img id="channel-avatar" src="" alt="avatar">
+                    <div class="avatar-ring"></div>
+                </div>
+                <div class="channel-info">
+                    <div class="so-label">Shout Out</div>
+                    <div id="channel-name">ChannelName</div>
+                    <div class="twitch-url" id="twitch-url">twitch.tv/channelname</div>
+                </div>
+                <div class="follow-btn">FOLLOW 🚀</div>
+            </div>
+            <div class="info-divider"></div>
+            <span class="clip-label" id="clip-label-text">NOW PLAYING</span>
+            <div id="clip-title"></div>
+            <div id="channel-desc"></div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Card Picker Overlay -->
+<div id="card-picker-overlay">
+    <div class="picker-label">🌌 INCOMING TRANSMISSION 🌌</div>
+    <div id="picker-cards">
+
+        <div class="picker-card" id="pcard-0">
+            <div class="pcard-thumb"><img id="pthumb-0" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">01</div>
+                <div class="pcard-title" id="ptitle-0"></div>
+            </div>
+        </div>
+
+        <div class="picker-card" id="pcard-1">
+            <div class="pcard-thumb"><img id="pthumb-1" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">02</div>
+                <div class="pcard-title" id="ptitle-1"></div>
+            </div>
+        </div>
+
+        <div class="picker-card" id="pcard-2">
+            <div class="pcard-thumb"><img id="pthumb-2" src="" alt=""></div>
+            <div class="pcard-info">
+                <div class="pcard-num">03</div>
+                <div class="pcard-title" id="ptitle-2"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Fake cursor for picker animation (crosshair) -->
+<div id="fake-cursor">
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="12" stroke="#00ffff" stroke-width="2" fill="transparent"/>
+        <line x1="18" y1="2" x2="18" y2="34" stroke="#00ffff" stroke-width="2"/>
+        <line x1="2" y1="18" x2="34" y2="18" stroke="#00ffff" stroke-width="2"/>
+        <circle cx="18" cy="18" r="3" fill="#ff00ff"/>
+    </svg>
+</div>
+
+</body>
+</html>

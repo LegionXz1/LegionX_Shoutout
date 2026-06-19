@@ -312,6 +312,7 @@ Clipped by {creator_name} {created_at}"></textarea>
                 <option value="8">Terminal Slide</option>
                 <option value="9">Mega Retro</option>
                 <option value="cat">🐾 Cat Theme</option>
+                <option value="galaxy">🌌 Cosmic Galaxy</option>
             </select>
             <small class="text-muted"><a href="https://github.com/teklynk/twitch_shoutout/discussions/31" target="_blank">Screenshots of themes</a></small>
         </div>
@@ -621,9 +622,12 @@ Clipped by {creator_name} {created_at}"></textarea>
             if (mainAccount && validationError == false) {
                 let srcURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
 
-                // Cat theme uses its own HTML file; all other themes use shoutout.html
-                let htmlFile = (themeOption === "cat") ? "shoutout-cat.html" : "shoutout.html";
-                let themeParam = (themeOption === "cat") ? "0" : themeOption;
+                // Custom themes use their own HTML file; all other themes use shoutout.html
+                let htmlFile = "shoutout.html";
+                if (themeOption === "cat") htmlFile = "shoutout-cat.html";
+                if (themeOption === "galaxy") htmlFile = "shoutout-galaxy.html";
+                
+                let themeParam = (themeOption === "cat" || themeOption === "galaxy") ? "0" : themeOption;
 
                 let fullUrl = srcURL + htmlFile + "?channel=" + mainAccount.toLowerCase() + "&showClip=" + showClip + "&showMsg=" + encodeURIComponent(showMsg) + "&showText=" + showText + "&showImage=" + showImage + "&raided=" + raided + "&raidCount=" + raidCount + "&delay=" + delay + "&modsOnly=" + modsOnly + "&timeOut=" + timeOut + "&command=" + command + "&customMsg=" + encodeURIComponent(customMsg) + "&customTitle=" + encodeURIComponent(customTitle) + "&showDetails=" + showDetails + "&detailsText=" + encodeURIComponent(detailsText) + "&dateRange=" + dateRange + "&themeOption=" + themeParam + "&preferFeatured=" + preferFeatured + "&progressBar=" + progressBar + "&profileBadge=" + profileBadge + "&videoSize=" + videoSize + "&ref=" + btoa(ref);
                 fullUrl = fullUrl.replace("index.html" + htmlFile, htmlFile);
