@@ -199,7 +199,8 @@ $(document).ready(async function () {
 
     // Load theme css file if theme is set
     if (parseInt(themeOption) > 0) {
-        $('head').append('<link rel="stylesheet" type="text/css" href="assets/css/theme' + themeOption + '.css">');
+        let cacheBustStr = new Date().getTime();
+        $('head').append('<link rel="stylesheet" type="text/css" href="assets/css/theme' + themeOption + '.css?v=' + cacheBustStr + '">');
     }
 
     // Get game details function
